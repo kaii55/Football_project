@@ -9,6 +9,8 @@ from attacking_passes_per_sequence import calculate_avg_attacking_passes_per_seq
 from verticality import calculate_avg_verticality
 from defensive_height import calculate_avg_defensive_height
 from attacks import calculate_buildup_and_direct_attacks
+from attacks_under_10_passes import calculate_buildup_and_direct_attacks_under_10_passes
+
 
 # File paths
 input_parquet = "/Users/aritramajumdar/Desktop/Football_project/data/processed/J_League_data.parquet"
@@ -28,6 +30,8 @@ avg_attacking_passes = calculate_avg_attacking_passes_per_sequence(df)
 avg_verticality = calculate_avg_verticality(df)
 avg_defensive_height = calculate_avg_defensive_height(df)
 attacks = calculate_buildup_and_direct_attacks(df)
+attacks_under_10 = calculate_buildup_and_direct_attacks_under_10_passes(df)
+
 
 # Merge all metrics into a single DataFrame
 metrics_df = (
@@ -40,6 +44,7 @@ metrics_df = (
     .merge(avg_attacking_passes, on='Team', how='left')
     .merge(avg_verticality, on='Team', how='left')
     .merge(avg_defensive_height, on='Team', how='left')
+    .merge(attacks, on='Team', how='left')
     .merge(attacks, on='Team', how='left')
 )
 
