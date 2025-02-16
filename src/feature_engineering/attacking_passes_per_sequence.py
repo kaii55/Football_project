@@ -4,8 +4,6 @@ def calculate_avg_attacking_passes_per_sequence(df):
     """
     Calculate Average Attacking Passes per Possession Sequence for each team.
 
-    Attacking Passes are passes made in the opponent's half.
-
     Args:
         df (pd.DataFrame): Processed J League events DataFrame.
     

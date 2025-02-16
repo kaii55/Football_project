@@ -2,7 +2,7 @@ import pandas as pd
 
 def calculate_avg_pressure(df):
     """
-    Calculate Average Pressure per Possession for each team.
+    Calculate Average Pressure per Possession for each team OOP.
 
     Args:
         df (pd.DataFrame): Processed J League events DataFrame.
@@ -109,6 +109,6 @@ def calculate_avg_pressure(df):
     average_pressure = average_pressure.sort_values(by='Pressure', ascending=True)
     average_pressure['Pressure'] = average_pressure['Pressure'].round(2)
 
-    average_pressure
+    return average_pressure
 
 

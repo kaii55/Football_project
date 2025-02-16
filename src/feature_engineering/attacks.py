@@ -4,8 +4,10 @@ def calculate_buildup_and_direct_attacks(df):
     """
     Calculate Buildup Attacks and Direct Attacks for each team.
 
-    - Buildup Attacks: Possessions with at least 5 passes ending in a shot or penalty box entry.
-    - Direct Attacks: Possessions starting in the team's half and reaching the final third in 3 or fewer passes.
+    - Buildup Attacks: The number of open-play sequences consisting of 10+ passes 
+    that either result in a shot or include at least one touch inside the opponent’s penalty box.
+    - Direct Attacks: Open-play sequences that start inside a team's own half, 
+    move at least 50% toward the opponent's goal, and end in a shot or a penalty box touch.
 
     Args:
         df (pd.DataFrame): Processed J League events DataFrame.

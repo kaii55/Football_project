@@ -1,10 +1,15 @@
 import json
 import pandas as pd
+import yaml
 
-# File paths
-events_path = "/Users/aritramajumdar/Desktop/Football_project/data/raw/sb_events.json"
-matches_path = "/Users/aritramajumdar/Desktop/Football_project/data/raw/sb_matches.json"
-output_path = "/Users/aritramajumdar/Desktop/Football_project/data/processed/J_League_data.parquet"
+# Load configuration from config.yaml
+with open("config/config.yaml", "r") as file:
+    config = yaml.safe_load(file)
+
+# File paths from config
+events_path = config["paths"]["events"]
+matches_path = config["paths"]["matches"]
+output_path = config["paths"]["output"]
 
 def load_json(file_path):
     """Load JSON file into a Pandas DataFrame."""

@@ -5,8 +5,8 @@ def calculate_speed_metrics(df):
     """
     Calculate Speed and Direct Speed for each team.
     
-    Speed: Average distance covered per second during possessions.  
-    Direct Speed: Average straight-line distance from start to end per second during possessions.
+    Speed: The speed of ball movement during a possession sequence. 
+    Direct Speed: The average speed of ball progression towards the opponent’s goal.
     
     Args:
         df (pd.DataFrame): Processed J League events DataFrame.
@@ -22,22 +22,22 @@ def calculate_speed_metrics(df):
 
     match_ids = df_events["match_id"].unique()
 
-chains_data = []
+    chains_data = []
 
-for match_id in match_ids:
-    df_match = df_events[df_events["match_id"] == match_id]
-    
-    df_match['Time'] = df_match['minute'] * 60 + df_match['second']
-    df_match['Time_diff'] = df_match['Time'].diff()
-    df_match['Time_diff'].fillna(0, inplace = True)
-    df_match["Time_diff"] = df_match["Time_diff"].shift(-1)
-    
-    df_match['ordinate'] = np.sqrt(df_match['x']**2 + df['y']**2)
-    df_match['distance'] = np.abs(df_match['ordinate'].diff())
-    df_match['distance'].fillna(0, inplace = True)
-    df_match["distance"] = df_match["distance"].shift(-1)
-    
-    chains = pd.DataFrame()
+    for match_id in match_ids:
+        df_match = df_events[df_events["match_id"] == match_id]
+        
+        df_match['Time'] = df_match['minute'] * 60 + df_match['second']
+        df_match['Time_diff'] = df_match['Time'].diff()
+        df_match['Time_diff'].fillna(0, inplace = True)
+        df_match["Time_diff"] = df_match["Time_diff"].shift(-1)
+        
+        df_match['ordinate'] = np.sqrt(df_match['x']**2 + df['y']**2)
+        df_match['distance'] = np.abs(df_match['ordinate'].diff())
+        df_match['distance'].fillna(0, inplace = True)
+        df_match["distance"] = df_match["distance"].shift(-1)
+        
+        chains = pd.DataFrame()
         for v in df_match.possession.unique():
             chain = df_match.loc[df_match["possession"] == v]
             chain['Sequence Time'] = chain['Time_diff'].sum()
@@ -54,9 +54,9 @@ for match_id in match_ids:
             if chain.shape[0] >= 4:  
                 
                 chains = pd.concat([chains, chain], ignore_index=True)
-        
+            
         chains_data.append(chains)
-        
+            
     chains_data = pd.concat(chains_data) 
 
     ch = chains_data.groupby(['match_id', 'possession', 'possession_team.name']).agg({

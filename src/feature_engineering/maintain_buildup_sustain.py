@@ -1,8 +1,9 @@
 import pandas as pd
+import numpy as np
 
 def calculate_maintain_buildup_sustain(df):
     """
-    Calculate Maintain Phase (Possession Retention).
+    Calculate Maintain buildup and Sustain Percentages.
 
     Maintain measures how often teams retain possession after passing sequences.
 

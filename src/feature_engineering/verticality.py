@@ -5,7 +5,7 @@ def calculate_avg_verticality(df):
     """
     Calculate Average Verticality for each team.
 
-    Verticality measures how direct a team's play is, defined as the average vertical distance (upfield) covered per action.
+    The ratio of forward progression to total pass distance, representing the directness of ball movement towards opponent’s goal.
 
     Args:
         df (pd.DataFrame): Processed J League events DataFrame.

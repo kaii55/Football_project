@@ -13,6 +13,9 @@ __pycache__/
 # Ignore Jupyter notebook checkpoints
 notebooks/.ipynb_checkpoints
 
-# Ignore large data files
+# Ignore configuration files
+config/config.yaml
+
+# Ignore raw and preprocessed data
 data/raw/
 data/processed/

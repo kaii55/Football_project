@@ -16,8 +16,17 @@ setup(
         "tqdm",
         "jupyter"
     ],
+    python_requires=">=3.9",
+    entry_points={
+        "console_scripts": [
+            "run-preprocessing=src.data_processing.preprocess_jleague:main",
+            "run-metrics=src.feature_engineering.metrics:main",
+            "run-visualization=src.visualization.pca_cluster:main"
+        ]
+    },
     author="Aritra Majumdar",
     description="An end-to-end football analytics project",
     license="MIT",
     url="https://github.com/kaii55/Football_project"
 )
+

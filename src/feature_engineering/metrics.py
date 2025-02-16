@@ -1,4 +1,6 @@
 import pandas as pd
+import yaml
+
 from possession import calculate_possession
 from ppda import calculate_ppda
 from field_tilt import calculate_field_tilt
@@ -8,15 +10,17 @@ from passes_per_sequence import calculate_avg_passes_per_sequence
 from attacking_passes_per_sequence import calculate_avg_attacking_passes_per_sequence
 from verticality import calculate_avg_verticality
 from defensive_height import calculate_avg_defensive_height
-#from attacks import calculate_buildup_and_direct_attacks
-#from attacks_under_10_passes import calculate_buildup_and_direct_attacks_under_10_passes
+from attacks import calculate_buildup_and_direct_attacks
+from attacks_under_10_passes import calculate_buildup_and_direct_attacks_under_10_passes
 from average_pressure import calculate_avg_pressure
 
+# Load configuration from config.yaml
+with open("config/config.yaml", "r") as file:
+    config = yaml.safe_load(file)
 
-
-# File paths
-input_parquet = "/Users/aritramajumdar/Desktop/Football_project/data/processed/J_League_data.parquet"
-output_file = "/Users/aritramajumdar/Desktop/Football_project/data/processed/jleague_metrics.xlsx"
+# File paths from config
+input_parquet = config["paths"]["output"]
+output_file = config["paths"].get("metrics_output", "data/processed/j_league_metrics.xlsx")
 
 # Load the processed Parquet file
 df = pd.read_parquet(input_parquet)
@@ -31,8 +35,8 @@ avg_passes = calculate_avg_passes_per_sequence(df)
 avg_attacking_passes = calculate_avg_attacking_passes_per_sequence(df)
 avg_verticality = calculate_avg_verticality(df)
 avg_defensive_height = calculate_avg_defensive_height(df)
-#attacks = calculate_buildup_and_direct_attacks(df)
-#attacks_under_10 = calculate_buildup_and_direct_attacks_under_10_passes(df)
+attacks = calculate_buildup_and_direct_attacks(df)
+attacks_under_10 = calculate_buildup_and_direct_attacks_under_10_passes(df)
 avg_pressure = calculate_avg_pressure(df)
 
 
@@ -48,6 +52,9 @@ metrics_df = (
     .merge(avg_verticality, on='Team', how='left')
     .merge(avg_defensive_height, on='Team', how='left')
     .merge(avg_pressure, on='Team', how='left')
+    .merge(attacks, on='Team', how='left')
+    .merge(attacks_under_10, on='Team', how='left')
+
 )
 
 

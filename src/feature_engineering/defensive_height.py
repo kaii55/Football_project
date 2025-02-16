@@ -5,7 +5,7 @@ def calculate_avg_defensive_height(df):
     """
     Calculate Average Defensive Height for each team.
 
-    Defensive Height is the average vertical position of defensive actions (tackles, pressures, interceptions).
+    Defensive Height is the average vertical position of defensive actions (tackles, interceptions, fouls).
 
     Args:
         df (pd.DataFrame): Processed J League events DataFrame.

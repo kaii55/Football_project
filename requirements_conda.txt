@@ -21,8 +21,8 @@ bottleneck=1.4.2=py39hf3fd67a_0
 brotli-python=1.0.9=py39h6d0c2b6_9
 bzip2=1.0.8=hfdf4475_7
 c-ares=1.34.4=hf13058a_0
-ca-certificates=2025.1.31=h8857fd0_0
-certifi=2025.1.31=pyhd8ed1ab_0
+ca-certificates=2024.12.31=hecd8cb5_0
+certifi=2025.1.31=py39hecd8cb5_0
 charset-normalizer=3.3.2=pyhd3eb1b0_0
 contourpy=1.2.1=py39h1962661_1
 cycler=0.11.0=pyhd3eb1b0_0
@@ -85,6 +85,7 @@ python=3.9.21=hce00570_1
 python-dateutil=2.9.0post0=py39hecd8cb5_2
 python-tzdata=2023.3=pyhd3eb1b0_0
 pytz=2024.1=py39hecd8cb5_0
+pyyaml=6.0.2=py39h46256e1_0
 re2=2022.04.01=h96cf925_0
 readline=8.2=hca72f7f_0
 requests=2.32.3=py39hecd8cb5_1
@@ -103,6 +104,7 @@ urllib3=2.3.0=py39hecd8cb5_0
 utf8proc=2.6.1=h6c40b1e_1
 wheel=0.45.1=py39hecd8cb5_0
 xz=5.4.6=h6c40b1e_1
+yaml=0.2.5=haf1e3a3_0
 zipp=3.21.0=py39hecd8cb5_0
 zlib=1.2.13=h4b97444_1
 zstd=1.5.6=h138b38a_0

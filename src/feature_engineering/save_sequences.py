@@ -1,8 +1,11 @@
 import pandas as pd
+import yaml
 
-# File paths
-input_parquet = "/Users/aritramajumdar/Desktop/Football_project/data/processed/J_League_data.parquet"
-output_file = "/Users/aritramajumdar/Desktop/Football_project/data/processed/J_sequence_data_2024.xlsx"
+with open("config/config.yaml", "r") as file:
+    config = yaml.safe_load(file)
+
+input_parquet = config["paths"]["output"]
+output_file = config["paths"]["output_sequence"]
 
 df = pd.read_parquet(input_parquet)
 
@@ -129,5 +132,4 @@ sequences['away_chain_in_box'] = away_chain_in_box
 
 # Save to Parquet
 sequences.to_excel(output_file, index=False)
-
 print(f"✅ Sequences saved to {output_file}")
