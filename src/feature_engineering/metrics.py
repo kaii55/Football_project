@@ -8,8 +8,10 @@ from passes_per_sequence import calculate_avg_passes_per_sequence
 from attacking_passes_per_sequence import calculate_avg_attacking_passes_per_sequence
 from verticality import calculate_avg_verticality
 from defensive_height import calculate_avg_defensive_height
-from attacks import calculate_buildup_and_direct_attacks
-from attacks_under_10_passes import calculate_buildup_and_direct_attacks_under_10_passes
+#from attacks import calculate_buildup_and_direct_attacks
+#from attacks_under_10_passes import calculate_buildup_and_direct_attacks_under_10_passes
+from average_pressure import calculate_avg_pressure
+
 
 
 # File paths
@@ -29,8 +31,9 @@ avg_passes = calculate_avg_passes_per_sequence(df)
 avg_attacking_passes = calculate_avg_attacking_passes_per_sequence(df)
 avg_verticality = calculate_avg_verticality(df)
 avg_defensive_height = calculate_avg_defensive_height(df)
-attacks = calculate_buildup_and_direct_attacks(df)
-attacks_under_10 = calculate_buildup_and_direct_attacks_under_10_passes(df)
+#attacks = calculate_buildup_and_direct_attacks(df)
+#attacks_under_10 = calculate_buildup_and_direct_attacks_under_10_passes(df)
+avg_pressure = calculate_avg_pressure(df)
 
 
 # Merge all metrics into a single DataFrame
@@ -44,9 +47,9 @@ metrics_df = (
     .merge(avg_attacking_passes, on='Team', how='left')
     .merge(avg_verticality, on='Team', how='left')
     .merge(avg_defensive_height, on='Team', how='left')
-    .merge(attacks, on='Team', how='left')
-    .merge(attacks, on='Team', how='left')
+    .merge(avg_pressure, on='Team', how='left')
 )
+
 
 # Save the metrics to an Excel file
 metrics_df.to_excel(output_file, index=False)
