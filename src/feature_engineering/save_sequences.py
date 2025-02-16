@@ -2,7 +2,7 @@ import pandas as pd
 
 # File paths
 input_parquet = "/Users/aritramajumdar/Desktop/Football_project/data/processed/J_League_data.parquet"
-output_parquet = "/Users/aritramajumdar/Desktop/Football_project/data/processed/J_sequence_data_2024.xlsx"
+output_file = "/Users/aritramajumdar/Desktop/Football_project/data/processed/J_sequence_data_2024.xlsx"
 
 df = pd.read_parquet(input_parquet)
 
@@ -128,6 +128,6 @@ sequences['away_chain_att_third'] = away_chain_att_t
 sequences['away_chain_in_box'] = away_chain_in_box  
 
 # Save to Parquet
-sequences.to_excel(output_parquet, index=False)
+sequences.to_excel(output_file, index=False)
 
-print(f"✅ Sequences saved to {output_parquet}")
+print(f"✅ Sequences saved to {output_file}")
