@@ -5,6 +5,7 @@ from field_tilt import calculate_field_tilt
 from maintain_buildup_sustain import calculate_maintain_buildup_sustain
 from speed_metrics import calculate_speed_metrics
 from passes_per_sequence import calculate_avg_passes_per_sequence
+from attacking_passes_per_sequence import calculate_avg_attacking_passes_per_sequence
 
 # File paths
 input_parquet = "/Users/aritramajumdar/Desktop/Football_project/data/processed/J_League_data.parquet"
@@ -20,6 +21,7 @@ field_tilt = calculate_field_tilt(df)
 mbs = calculate_maintain_buildup_sustain(df)
 speed_metrics = calculate_speed_metrics(df)
 avg_passes = calculate_avg_passes_per_sequence(df)
+avg_attacking_passes = calculate_avg_attacking_passes_per_sequence(df)
 
 # Merge all metrics into a single DataFrame
 metrics_df = (
@@ -28,7 +30,8 @@ metrics_df = (
     .merge(field_tilt, on='Team', how='left')
     .merge(mbs, on='Team', how='left')
     .merge(speed_metrics, on='Team', how='left')
-    .merge(avg_passes, on='team.name', how='left')
+    .merge(avg_passes, on='Team', how='left')
+    .merge(avg_attacking_passes, on='Team', how='left')
 )
 
 # Save the metrics to an Excel file
