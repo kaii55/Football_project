@@ -13,13 +13,15 @@ df = pd.read_parquet(input_parquet)
 possession = calculate_possession(df)
 ppda = calculate_ppda(df)
 field_tilt = calculate_field_tilt(df)
+mbs = calculate_maintain_buildup_sustain(df)
 
 
 # Merge metrics into a single DataFrame
 metrics_df = (
     possession
-    .merge(ppda, on='Team', how='outer')
+    .merge(ppda, on='Team', how='left')
     .merge(field_tilt, on='Team', how='left')
+    .merge(mbs, on='Team', how='left')
 )
 
 # Save the metrics to an Excel file
